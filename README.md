@@ -2,8 +2,8 @@
 
 # 🐾 Animall Forrajería - Legacy System
 
-<img src="https://img.shields.io/badge/Estado-Legacy%20%2F%20Archivado-orange?style=for-the-badge&logo=archive&logoColor=white" alt="Estado Badge"/>
-<img src="https://img.shields.io/badge/Versión-Old-grey?style=for-the-badge" alt="Version Badge"/>
+<img src="https://img.shields.io/badge/Estado-Legacy%20%2F%20Archivado-orange?style=for-the-badge&logo=archive&logoColor=white" alt="Estado Legacy"/>
+<img src="https://img.shields.io/badge/Versión-Final_v1.0-grey?style=for-the-badge" alt="Version"/>
 
 <br/>
 
@@ -14,78 +14,88 @@
 <br/>
 
 <p>
-    <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="CSharp Badge"/>
-    <img src="https://img.shields.io/badge/.NET-Framework-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt="DotNet Badge"/>
+    <img src="https://img.shields.io/badge/Lenguaje-C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C# Badge"/>
+    <img src="https://img.shields.io/badge/Framework-.NET%20Framework%204.x-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET Badge"/>
     <img src="https://img.shields.io/badge/UI-Windows%20Forms-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="WinForms Badge"/>
-    <img src="https://img.shields.io/badge/IDE-Visual%20Studio-5C2D91?style=for-the-badge&logo=visual-studio&logoColor=white" alt="VS Badge"/>
+    <img src="https://img.shields.io/badge/DB-Microsoft%20Access-A4373A?style=for-the-badge&logo=microsoftaccess&logoColor=white" alt="Access Badge"/>
 </p>
 
 </div>
 
 ---
 
-## 🎯 Objetivo y Alcance
+## 🎯 Objetivo y Contexto Histórico
 
-Este repositorio contiene el código fuente de la **versión original (Legacy)** del sistema de gestión para **Animall Forrajería**. Es una aplicación de escritorio robusta diseñada para administrar las operaciones diarias del local, desde la apertura de caja hasta la emisión de tickets.
+Este repositorio contiene el código fuente de la **versión original (Legacy)** del sistema de gestión para **Animall Forrajería**. Fue la primera solución digital implementada para administrar las operaciones diarias del local, reemplazando procesos manuales.
 
-Aunque ha sido sucedida por versiones más nuevas, este código sirve como referencia histórica de la lógica de negocio y la estructura base sobre la cual operaba la forrajería.
+Aunque ha sido sucedida por versiones modernas (Web/Cloud), este código se mantiene como referencia de la lógica de negocio fundamental y los algoritmos de facturación originales.
 
 ---
 
-## ⚙️ Stack Tecnológico & Arquitectura
+## 🏛️ Arquitectura del Sistema
 
-El proyecto sigue una arquitectura clásica de Windows Forms separada en capas lógicas.
+El proyecto sigue una arquitectura clásica de escritorio en capas, típica del desarrollo en .NET Framework de la época.
 
-| Capa / Proyecto | Tecnología | Descripción |
+### Diagrama de Dependencias
+
+| Componente | Tecnología | Responsabilidad |
 | :--- | :--- | :--- |
-| **Animall.app** | Windows Forms (.NET) | La interfaz gráfica de usuario. Contiene todos los formularios (`MainForm`, `TicketForm`), gestión de eventos y controles de usuario. |
-| **Animall.Core** | C# Class Library | Biblioteca de clases base. Contiene lógica compartida, utilidades y gestión de recursos tipográficos (Fuentes). |
-| **Recursos** | Embedded Resources | Gestión interna de imágenes (iconos, logos) y fuentes personalizadas (Arial, Courier) embebidas en el ensamblado. |
+| **Animall.app** | Windows Forms | Interfaz gráfica (MDI), gestión de eventos de usuario y validación visual. |
+| **Animall.Core** | Class Library (C\#) | Contiene los modelos (`Venta`, `Producto`), la lógica de conexión `OleDb` y la generación de strings para tickets. |
+| **Recursos** | Embedded Resources | Gestión de fuentes tipográficas (Arial, Courier) e imágenes incrustadas en el ensamblado. |
 
----
+-----
 
 ## 🚀 Características Funcionales
 
-* **🏪 Punto de Venta (POS):** Interfaz principal (`MainForm`) para la carga y procesamiento de ventas.
-* **💰 Gestión de Caja:**
-    * **Apertura:** Módulo `DineroInicialForm` para declarar el fondo de caja al inicio del turno.
-    * **Cierre y Arqueo:** Funcionalidad para el control de ingresos.
-* **💳 Métodos de Pago:** Módulo `SeleccionarMetodos` para procesar cobros en efectivo, tarjetas o billeteras virtuales.
-* **🧾 Emisión de Comprobantes:** Sistema de generación de tickets (`TicketForm`) diseñado para impresoras térmicas, utilizando fuentes monoespaciadas (Courier) para una alineación perfecta.
-* **🛡️ Seguridad Operativa:** Confirmaciones críticas (`ConfirmacionReinicioForm`) para evitar cierres accidentales del sistema.
+  * **🏪 Punto de Venta (POS):** Interfaz optimizada para teclado (`MainForm`) para carga rápida de productos.
+  * **💰 Gestión de Tesorería:**
+      * **Apertura de Caja:** Declaración de fondos iniciales (`DineroInicialForm`).
+      * **Arqueo y Cierre:** Control de ingresos diarios.
+  * **💳 Métodos de Pago:** Soporte para efectivo, tarjetas y billeteras virtuales (`SeleccionarMetodos`).
+  * **🧾 Motor de Impresión:** Generación de tickets de texto plano formateados para impresoras térmicas ESC/POS.
+  * **🛡️ Seguridad Operativa:** Prevención de cierres accidentales mediante `ConfirmacionReinicioForm`.
 
----
+-----
 
-## 🛠️ Modo de Uso (Desarrollo)
+## 🛠️ Modo de Uso (Entorno de Desarrollo)
 
-Al ser una aplicación de escritorio .NET, se requiere un entorno Windows para su ejecución nativa.
+### Requisitos Previos
+
+1.  **Visual Studio 2019/2022** con la carga de trabajo ".NET Desktop Development".
+2.  **Microsoft Access Database Engine 2010/2016** (Driver OLEDB) instalado para permitir la conexión a `.accdb`.
+
+### Estructura del Proyecto
 
 ```text
 /AnimallForrajeria
-├── Animall.sln            <-- Solución principal
-├── Animall.app/           <-- Proyecto de Interfaz
-│   ├── MainForm.cs        <-- Pantalla Principal
-│   └── TicketForm.cs      <-- Diseño de Tickets
-└── Animall.Core/          <-- Lógica de Negocio
-````
+├── Animall.sln            <-- Solución de Visual Studio
+├── Animall.app/           <-- Proyecto de UI (Ejecutable)
+│   ├── MainForm.cs        <-- Pantalla Principal de Ventas
+│   ├── TicketForm.cs      <-- Previsualización de Tickets
+│   └── Resources/         <-- Iconos y Assets
+└── Animall.Core/          <-- Librería de Clases
+    └── Class1.cs          <-- Lógica central (Conexión DB y Modelos)
+```
 
 ### Pasos para Ejecutar
 
-1.  **Prerrequisitos:** Instalar Visual Studio (2019 o superior) con la carga de trabajo ".NET Desktop Development".
-2.  **Clonar:** Descarga este repositorio en tu máquina local.
-3.  **Abrir:** Ejecuta el archivo `Animall.Core.sln` (o la solución principal si está unificada).
-4.  **Restaurar:** Visual Studio restaurará automáticamente los paquetes NuGet necesarios.
-5.  **Compilar:** Presiona `F5` o el botón "Iniciar" para compilar y ejecutar en modo Debug.
+1.  Clonar el repositorio.
+2.  Abrir `Animall.Core.sln` (o la solución unificada).
+3.  Verificar que la cadena de conexión en `Animall.Core` apunte correctamente al archivo `.accdb` (por defecto `./Animall_db.accdb`).
+4.  Compilar y ejecutar con **F5**.
+
+> ⚠️ **Nota Legacy:** Es posible que sea necesario ejecutar Visual Studio como Administrador si la aplicación intenta escribir logs o acceder a puertos de impresión directos.
 
 -----
 
 ## 📦 Despliegue
 
-El proyecto incluye perfiles de publicación configurados (`FolderProfile.pubxml`) para generar ejecutables portables o instalables en entornos Windows.
+El proyecto incluye perfiles de publicación (`FolderProfile.pubxml`) configurados para generar un ejecutable portable para Windows (x86/x64).
 
 -----
 
-## ⚖️ Créditos
+## ⚖️ Créditos y Licencia
 
 Desarrollado por **Martín Ratti**.
-*Este software es propietario y fue desarrollado específicamente para las necesidades de Animall Forrajería.*
+*Software propietario desarrollado exclusivamente para Animall Forrajería. No apto para uso público sin autorización.*
